@@ -36,8 +36,14 @@ Monitor and log switch port status changes.
 
   ## Screenshots
 
+### Scenario 1: Normal Operation
+
+
 ### 🔹 Normal Network (Ping Test)
 <img width="679" height="240" alt="Screenshot 2026-04-17 071633" src="https://github.com/user-attachments/assets/019309c3-21f8-4705-aa63-c92c6d5afaa1" />
+
+
+### Scenario 2: Failure (Port Down)
 
 
 ### 🔹 Port Down Simulation
@@ -50,4 +56,34 @@ Monitor and log switch port status changes.
 
 ### 🔹 Logs Output
 <img width="846" height="312" alt="Screenshot 2026-04-17 071821" src="https://github.com/user-attachments/assets/a6f5aae7-456e-4c9e-916f-814057c2eae0" />
+
+## Test Scenarios
+
+### Scenario 1: Normal Operation (Before Failure)
+Initially, all hosts are connected and communication is successful.
+
+- Command used: `pingall`
+- Result: 0% packet loss
+- This confirms normal network operation.
+
+---
+
+### Scenario 2: Failure Condition (After Port Down)
+After normal operation, a port is brought down to simulate failure.
+
+- Command used: `link s1 h1 down`
+- Then tested using: `pingall`
+- Result: Packet loss observed
+- Communication is disrupted for the affected host
+
+The controller detects this change and generates an alert.
+
+---
+
+## Validation
+
+- Before failure: All hosts communicate successfully (0% packet loss)
+- After failure: Packet loss occurs due to port being down
+- Controller logs confirm port status changes
+- Alerts are generated in real-time
 
