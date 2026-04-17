@@ -87,3 +87,7 @@ The controller detects this change and generates an alert.
 - Controller logs confirm port status changes
 - Alerts are generated in real-time
 
+## SDN Behavior (Match–Action Logic)
+
+The controller handles PacketIn events and forwards packets using flooding (OFPP_FLOOD).
+This demonstrates match–action logic where incoming packets are matched and an action (forwarding to all ports) is applied.
